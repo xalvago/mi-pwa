@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sin Conexión - FichApp</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            background-color: #F8FAFC;
+            color: #1E293B;
+            padding: 20px;
+        }
+
+        .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            color: #94A3B8;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #64748B;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: #2563EB;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #1D4ED8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="icon">📡</div>
+    <h1>Sin Conexión a Internet</h1>
+    <p>FichApp necesita conexión para funcionar correctamente.<br>Por favor, comprueba tu red.</p>
+    <button onclick="window.location.reload()">Reintentar</button>
+</body>
+
+</html>

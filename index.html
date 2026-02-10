@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FichApp - Comercial del Motor</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2563EB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="FichApp">
+
+    <!-- Manifest Link -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Icons (Placeholders - You need to add these files) -->
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="icon" type="image/png" href="icons/favicon.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /* Prevent scroll on the shell, let iframe scroll */
+            background-color: #F8FAFC;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        #app-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Loading Screen Styles */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #E2E8F0;
+            border-top: 5px solid #2563EB;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        .loading-text {
+            color: #64748B;
+            font-weight: 500;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* IOS Safe Area Fix */
+        @supports (padding-top: env(safe-area-inset-top)) {
+            body {
+                padding-top: env(safe-area-inset-top);
+                background-color: #2563EB;
+                /* Status bar color match */
+            }
+
+            #app-frame {
+                height: calc(100% - env(safe-area-inset-top));
+                background-color: #F8FAFC;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="spinner"></div>
+        <div class="loading-text">Cargando FichApp...</div>
+    </div>
+
+    <!-- The App Wrapper -->
+    <!-- REPLACE 'YOUR_WEB_APP_URL_HERE' with your actual Google Apps Script Exec URL -->
+    <iframe id="app-frame" src="https://script.google.com/macros/s/AKfycbxXHaLP5Nm7NAXxNskc5nsThgRoIkFPhaw3QQrLmtciwKroxdmSWiDdq-bP9U36B4LD/exec"
+        allow="geolocation; microphone; camera; fullscreen"
+        sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation">
+    </iframe>
+
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('SW Registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW Registration Failed: ', registrationError);
+                    });
+            });
+        }
+
+        // Hide loader when iframe loads
+        const iframe = document.getElementById('app-frame');
+        const loader = document.getElementById('loader');
+
+        iframe.onload = function () {
+            // Add a small delay to ensure render
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 1500);
+        };
+    </script>
+</body>
+
+</html>
