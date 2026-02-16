@@ -5,7 +5,7 @@
   "theme_color": "#2563EB",
   "display": "standalone",
   "scope": "./",
-  "start_url": "https://script.google.com/macros/s/AKfycbxXHaLP5Nm7NAXxNskc5nsThgRoIkFPhaw3QQrLmtciwKroxdmSWiDdq-bP9U36B4LD/exec",
+  "start_url": "./index.html",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -34,4 +34,5 @@
   "categories": ["business", "finance"],
   "description": "App de gestión de fichaje y recursos humanos - Comercial del Motor"
 }
+
 
