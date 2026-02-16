@@ -1,5 +1,5 @@
 {
-  "id": "./index.html",
+  "id": "fichapp-v1",
   "name": "FichApp - Comercial del Motor",
   "short_name": "FichApp",
   "description": "App de gestión de fichaje y recursos humanos - Comercial del Motor",
@@ -8,7 +8,7 @@
   "display": "standalone",
   "orientation": "portrait-primary",
   "scope": "./",
-  "start_url": "./index.html",
+  "start_url": "./",
   "icons": [
     {
       "src": "icons/icon-192x192.png",
@@ -23,6 +23,7 @@
   ],
   "categories": ["business", "finance"]
 }
+
 
 
 
