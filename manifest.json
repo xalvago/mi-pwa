@@ -7,8 +7,8 @@
   "theme_color": "#2563EB",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "scope": "./",
-  "start_url": "/mi-pwa/",
+  "scope": "/mi-pwa/", 
+  "start_url": "/mi-pwa/index.html",
   "icons": [
     {
       "src": "icons/icon-192x192.png",
@@ -25,6 +25,7 @@
   ],
   "categories": ["business", "finance"]
 }
+
 
 
 
