@@ -2,7 +2,7 @@ const CACHE_NAME = 'fichapp-wrapper-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  //'./offline.html',
+  './offline.html',
   './manifest.json',
   // Note: App shell icons should be cached when they exist
   './icons/icon-192x192.png',
@@ -67,5 +67,6 @@ self.addEventListener('fetch', (event) => {
     );
   }
 });
+
 
 
