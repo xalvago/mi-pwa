@@ -1,12 +1,12 @@
 const CACHE_NAME = 'fichapp-wrapper-v2';
 const ASSETS_TO_CACHE = [
-  './',
-  './index.html',
-  './offline.html',
-  './manifest.json',
+  '/mi-pwa/',
+  '/mi-pwa/index.html',
+  '/mi-pwa/offline.html',
+  '/mi-pwa/manifest.json',
   // Note: App shell icons should be cached when they exist
-  './icons/icon-192x192.png',
-  './icons/icon-512x512.png'
+  '/mi-pwa/icons/icon-192x192.png',
+  '/mi-pwa/icons/icon-512x512.png'
 ];
 
 // Install Event: Cache App Shell
@@ -67,6 +67,7 @@ self.addEventListener('fetch', (event) => {
     );
   }
 });
+
 
 
 
