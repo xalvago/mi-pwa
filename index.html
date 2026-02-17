@@ -4,18 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FichApp - Comercial del Motor</title>
+    <title>ticficha</title>
 
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#2563EB">
+    <meta name="theme-color" content="#122633">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="FichApp">
+    <meta name="apple-mobile-web-app-title" content="ticficha">
 
-    <!-- Manifest Link -->
     <link rel="manifest" href="./manifest.json">
 
-    <!-- Icons (Placeholders - You need to add these files) -->
     <link rel="apple-touch-icon" href="icons/icon-192x192.png">
     <link rel="icon" type="image/png" href="icons/favicon.ico">
 
@@ -31,8 +28,8 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            /* Prevent scroll on the shell, let iframe scroll */
-            background-color: #F8FAFC;
+            /* Fondo Gris Claro del logo */
+            background-color: #DDDEDD;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
@@ -50,6 +47,7 @@
             left: 0;
             width: 100%;
             height: 100%;
+            /* Fondo blanco puro para el loader */
             background: #ffffff;
             display: flex;
             flex-direction: column;
@@ -62,39 +60,38 @@
         .spinner {
             width: 50px;
             height: 50px;
+            /* Gris suave para el fondo del círculo */
             border: 5px solid #E2E8F0;
-            border-top: 5px solid #2563EB;
+            /* Verde Lima del logo para la parte animada */
+            border-top: 5px solid #9AC343;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin-bottom: 20px;
         }
 
         .loading-text {
-            color: #64748B;
-            font-weight: 500;
+            /* Azul Oscuro para el texto de carga */
+            color: #122633;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* IOS Safe Area Fix */
         @supports (padding-top: env(safe-area-inset-top)) {
             body {
                 padding-top: env(safe-area-inset-top);
-                background-color: #2563EB;
-                /* Status bar color match */
+                /* Color de la barra de estado superior en iOS */
+                background-color: #122633;
             }
 
             #app-frame {
                 height: calc(100% - env(safe-area-inset-top));
-                background-color: #F8FAFC;
+                background-color: #DDDEDD;
             }
         }
     </style>
@@ -102,14 +99,11 @@
 
 <body>
 
-    <!-- Loading Screen -->
     <div id="loader">
         <div class="spinner"></div>
-        <div class="loading-text">Cargando FichApp...</div>
+        <div class="loading-text">Cargando ticficha...</div>
     </div>
 
-    <!-- The App Wrapper -->
-    <!-- REPLACE 'YOUR_WEB_APP_URL_HERE' with your actual Google Apps Script Exec URL -->
     <iframe id="app-frame" src="https://script.google.com/macros/s/AKfycbxXHaLP5Nm7NAXxNskc5nsThgRoIkFPhaw3QQrLmtciwKroxdmSWiDdq-bP9U36B4LD/exec"
         allow="geolocation; microphone; camera; fullscreen"
         sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation">
@@ -119,6 +113,7 @@
         // Service Worker Registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
+                // Mantenemos tu ruta actualizada para GitHub Pages
                 navigator.serviceWorker.register('/mi-pwa/sw.js')
                     .then(registration => {
                         console.log('SW Registered: ', registration);
@@ -129,12 +124,10 @@
             });
         }
 
-        // Hide loader when iframe loads
         const iframe = document.getElementById('app-frame');
         const loader = document.getElementById('loader');
 
         iframe.onload = function () {
-            // Add a small delay to ensure render
             setTimeout(() => {
                 loader.style.opacity = '0';
                 setTimeout(() => {
@@ -145,8 +138,4 @@
     </script>
 </body>
 
-
 </html>
-
-
-
