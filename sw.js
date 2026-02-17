@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fichapp-wrapper-v2';
+const CACHE_NAME = 'ticficha-v1';
 const ASSETS_TO_CACHE = [
   '/mi-pwa/',
   '/mi-pwa/index.html',
@@ -67,6 +67,7 @@ self.addEventListener('fetch', (event) => {
     );
   }
 });
+
 
 
 
