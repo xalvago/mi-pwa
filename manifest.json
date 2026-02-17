@@ -1,10 +1,10 @@
 {
-  "id": "fichapp-v1",
-  "name": "FichApp - Comercial del Motor",
-  "short_name": "FichApp",
-  "description": "App de gestión de fichaje y recursos humanos - Comercial del Motor",
-  "background_color": "#F8FAFC",
-  "theme_color": "#2563EB",
+  "id": "ticficha-v1",
+  "name": "ticficha",
+  "short_name": "ticficha",
+  "description": "App de gestión de fichaje y recursos humanos MD",
+  "background_color": "#DDDEDD",
+  "theme_color": "#122633",
   "display": "standalone",
   "orientation": "portrait-primary",
   "scope": "/mi-pwa/", 
@@ -25,6 +25,7 @@
   ],
   "categories": ["business", "finance"]
 }
+
 
 
 
