@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ticficha-v1';
+const CACHE_NAME = 'ticficha-v2';
 const ASSETS_TO_CACHE = [
   './',
   'index.html',
