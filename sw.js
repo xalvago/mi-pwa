@@ -1,12 +1,12 @@
 const CACHE_NAME = 'ticficha-v1';
 const ASSETS_TO_CACHE = [
-  '/mi-pwa/',
-  '/mi-pwa/index.html',
-  '/mi-pwa/offline.html',
-  '/mi-pwa/manifest.json',
+  './',
+  'index.html',
+  'offline.html',
+  'manifest.json',
   // Note: App shell icons should be cached when they exist
-  '/mi-pwa/icons/icon-192x192.png',
-  '/mi-pwa/icons/icon-512x512.png'
+  'icons/icon-192x192.png',
+  'icons/icon-512x512.png'
 ];
 
 // Install Event: Cache App Shell
@@ -60,7 +60,7 @@ self.addEventListener('fetch', (event) => {
               }
               // If not in cache (and network failed), return offline page
               if (event.request.mode === 'navigate') {
-                 return caches.match('./offline.html');
+                 return caches.match('offline.html');
               }
             });
         })
