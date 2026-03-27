@@ -114,7 +114,7 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 // Mantenemos tu ruta actualizada para GitHub Pages
-                navigator.serviceWorker.register('/mi-pwa/sw.js')
+                navigator.serviceWorker.register('/sw.js')
                     .then(registration => {
                         console.log('SW Registered: ', registration);
                     })
