@@ -1,5 +1,5 @@
 {
-  "id": "ticficha-v1",
+  "id": "ticficha-v2",
   "name": "ticficha",
   "short_name": "ticficha",
   "description": "App de gestión de fichaje y recursos humanos MD",
@@ -7,8 +7,8 @@
   "theme_color": "#122633",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "scope": "/", 
-  "start_url": "/index.html",
+  "scope": "./", 
+  "start_url": "./index.html",
   "icons": [
     {
       "src": "icons/icon-192x192.png",
@@ -25,13 +25,3 @@
   ],
   "categories": ["business", "finance"]
 }
-
-
-
-
-
-
-
-
-
-
