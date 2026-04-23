@@ -96,9 +96,15 @@
         <div class="loading-text">Cargando ticficha...</div>
     </div>
 
+    <!-- NUEVO: File Picker Nativo de la PWA (Fuera del iframe) -->
+    <input type="file" id="parentFilePicker" 
+           accept="image/jpeg,image/png,image/webp,image/gif" 
+           style="display:none;">
+    <!-- NUEVO: Añadido "allow-modals" al sandbox por seguridad de compatibilidad -->
+
     <iframe id="app-frame" src="https://script.google.com/macros/s/AKfycbxXHaLP5Nm7NAXxNskc5nsThgRoIkFPhaw3QQrLmtciwKroxdmSWiDdq-bP9U36B4LD/exec"
         allow="geolocation; microphone; camera; fullscreen"
-        sandbox="allow-downloads allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation">
+        sandbox="allow-downloads allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation allow-modals">
     </iframe>
 
     <script>
@@ -149,7 +155,45 @@
                 }, 500);
             }, 1500);
         };
+        // ------------------------------------------------------------------------
+        // NUEVO: 4. Puente de Comunicación para el Selector de Fotos en Android
+        // ------------------------------------------------------------------------
+        const filePicker = document.getElementById('parentFilePicker');
+        // Escuchar mensajes provenientes del iframe (Google Apps Script)
+        window.addEventListener('message', function(event) {
+            // Seguridad: Solo procesar si el origen es de Google
+            if (!event.origin.includes('google.com') && 
+                !event.origin.includes('googleusercontent.com')) return;
+            // Si GAS pide abrir el selector, hacer click en el input nativo
+            if (event.data && event.data.type === 'OPEN_FILE_PICKER') {
+                console.log("Abrir selector nativo Android solicitado.");
+                filePicker.click(); 
+            }
+        });
+        // Cuando la foto ha sido seleccionada en la galería nativa:
+        filePicker.addEventListener('change', function() {
+            if (!filePicker.files || filePicker.files.length === 0) return;
+            const file = filePicker.files[0];
+            // Validar límite (5MB) para evitar cuelgues
+            if (file.size > 5 * 1024 * 1024) {
+                alert('La imagen no debe superar los 5 MB.');
+                try { filePicker.value = null; } catch(e) { filePicker.value = ''; }
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                // Enviar la imagen codificada en Base64 de vuelta al App Script!
+                iframe.contentWindow.postMessage({
+                    type: 'FILE_SELECTED',
+                    dataUrl: e.target.result,
+                    fileName: file.name,
+                    mimeType: file.type
+                }, '*');
+                // Limpiar input
+                try { filePicker.value = null; } catch(ex) { filePicker.value = ''; }
+            };
+            reader.readAsDataURL(file);
+        });
     </script>
 </body>
-
 </html>
